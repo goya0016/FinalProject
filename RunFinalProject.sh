@@ -13,3 +13,4 @@ rm -rf .git
 sudo mv FinalProjectRepository/ /var/www/html
 sudo systemctl start nginx
 open -a safari http://goya0016.hopto.org/
+/Users/nipungoyal/Library/Android/sdk/emulator/emulator -avd Nexus_10_API_25 &
