@@ -7,7 +7,7 @@ git commit -m "step 5"
 curl -u "goya0016" https://api.github.com/user/repos -d '{"name":"FinalProjectRepository","private":"true"}'
 git push --set-upstream https://github.com/goya0016/FinalProjectRepository.git master
 
-ssh goya0016@52.149.186.16 'git clone https://www.github.com/goya0016/FinalProjectRepository.git; cd FinalProjectRepository;cd FinalProjectRepository;rm -rf .git;sudo mv FinalProjectRepository/ /var/www/html;sudo systemctl start nginx'
+ssh -t goya0016@52.149.186.16 'git clone https://www.github.com/goya0016/FinalProjectRepository.git; cd FinalProjectRepository;rm -rf .git;cd ..;sudo mv FinalProjectRepository/ /var/www/html;sudo systemctl start nginx'
 
 open -a safari http://goya0016.hopto.org/
 /Users/nipungoyal/Library/Android/sdk/emulator/emulator -avd Nexus_10_API_25 &
@@ -19,14 +19,12 @@ cd ~/Documents/FinalProjectRepository/
 echo "FROM ubuntu:18.04">>Dockerfile
 echo "RUN apt update">>Dockerfile
 echo "RUN apt install -y nginx && apt install -y unzip">>Dockerfile
-echo "COPY Archive.zip  /var/www/html">>Dockerfile
-echo "RUN unzip Archive.zip">>Dockerfile
 echo "CMD ["/usr/sbin/nginx", "-g" , "daemon off;"]">>Dockerfile
 echo "EXPOSE 80">>Dockerfile
 docker build . -t myserver:v1
 docker run -p 12345:80 myserver:v1
 xcrun simctl boot 5340C2A6-D390-4A41-B8D3-FA2E5C54D195
 open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
-xcrun simctl openurl booted "http://goya0016.hopto.org"
-ssh goya0016@52.149.186.16 'sudo apt-get update; shutdown -h now'
+xcrun simctl openurl booted "http://localhost:12345"
+ssh -t goya0016@52.149.186.16 'sudo apt-get update; shutdown -h now'
 open -a safari http://goya0016.hopto.org/
