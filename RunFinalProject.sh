@@ -29,3 +29,4 @@ xcrun simctl boot 5340C2A6-D390-4A41-B8D3-FA2E5C54D195
 open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
 xcrun simctl openurl booted "http://goya0016.hopto.org"
 ssh goya0016@52.149.186.16 'sudo apt-get update; shutdown -h now'
+open -a safari http://goya0016.hopto.org/
